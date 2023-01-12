@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import urllib.parse
 import time
-from functions import extract_email_phone_no, get_all_places
+from functions import extract_email_phone_no, Increas_rating
 head={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"}
-# social_media = ['facebook', 'twitter', 'instagram', 'linkedin', 'pinterest', 'youtube']
+
 def get_and_combine_all_data(url):
     facebook=[]
     twitter=[]
@@ -22,9 +22,7 @@ def get_and_combine_all_data(url):
     for em in emails:
         if em.lower() not in email:
             email.append(em.lower())
-    for ph in phones:
-        if ph not in phone:
-            phone.append(ph)
+
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
@@ -83,7 +81,7 @@ if __name__ == "__main__":
     instagrams=[]
     emails=[]
     # try:
-    aa=get_all_places("85ab5e34-3d98-406f-a8c1-77df8ed68c2c")
+    aa=Increas_rating()
     all_dict=[]
     # inr=0
     item_no=1
@@ -99,18 +97,13 @@ if __name__ == "__main__":
             out=get_and_combine_all_data(base_url)
             all_dict.append(out)
             print(out)
-            elapsed_time = time.time() - start_time  # Calculate elapsed time
             print("")
             print("")
             print("")
             print("")
-            item_no+=1
-            if item_no>500:
-                break
-            # if elapsed_time > 7200:  # If elapsed time is more than 2 hours (7200 seconds)
-            #     break
         except:
-            pass    
+            pass
+        item_no+=1
     # print(all_dict)
     for d in all_dict:
         URL.append(d['Business'])
@@ -126,6 +119,6 @@ if __name__ == "__main__":
     "twitter":twitters,
     "emails":emails,
 })
-    df.to_csv("output_info.csv")
+    df.to_csv("INcrease_Rating_contact_info.csv")
   
 
