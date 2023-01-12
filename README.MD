@@ -1,4 +1,4 @@
-# TO use this tool you need to run the following commande:-
+# TO use this tool you need to run the following commands:-
 * pip install beautifulsoup4
 * pip install pandas
 * pip install requests
