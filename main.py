@@ -139,8 +139,8 @@ if __name__ == "__main__":
             pass
         item_no+=1
         no+=1
-        if no>10:
-            break
+        # if no>10:
+        #     break
     print(len(all_dict))
     for i in all_dict:
             names.append(i['PlaceName'])
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     "Twitter": twitters,
     "Tiktok": tiktoks
 })
-    df.to_csv("INcrease_Rating_contact_info.csv",index=False)
+    df.to_csv("Increase_Rating_contact_info.csv",index=False)
   
 
 
