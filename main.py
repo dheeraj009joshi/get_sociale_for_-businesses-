@@ -49,18 +49,23 @@ def get_and_combine_all_data(url):
     if tiktok==[]:
         tiktok.append("")
     print("total urls found :- "+str(len(all_urls)))
+    temp_url=[]
     for i in all_urls:
-        if i.startswith("/"):
-            response = requests.get(url+i,headers=head)
+        if i not in temp_url:
+            temp_url.append(i)
+            print(f"checking in url {i}.......................{len(all_urls)}")
+            if i.startswith("/"):
+                response = requests.get(url+i,headers=head)
+            else:
+                response = requests.get(i,headers=head)
+                
+            soup = BeautifulSoup(response.text, 'html.parser')
+            emails=extract_email_phone_no(str(soup))
+            for em in emails:
+                if em.lower() not in email:
+                    email.append(em.lower())
         else:
-            response = requests.get(i,headers=head)
-            
-        soup = BeautifulSoup(response.text, 'html.parser')
-        emails=extract_email_phone_no(str(soup))
-        for em in emails:
-            if em.lower() not in email:
-                email.append(em.lower())
-        
+            pass
     # print(phone)       
     # print(email)       
     # print(instagram)
