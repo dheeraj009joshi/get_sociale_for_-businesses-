@@ -50,8 +50,9 @@ def get_and_combine_all_data(url):
         tiktok.append("")
     print("total urls found :- "+str(len(all_urls)))
     temp_url=[]
+    port=0
     for i in all_urls:
-        if i not in temp_url:
+        if i not in temp_url :
             temp_url.append(i)
             print(f"checking in url {i}.......................{len(all_urls)}")
             if i.startswith("/"):
@@ -64,6 +65,9 @@ def get_and_combine_all_data(url):
             for em in emails:
                 if em.lower() not in email:
                     email.append(em.lower())
+        port+=1
+        if port>20:
+            break
         else:
             pass
     # print(phone)       
