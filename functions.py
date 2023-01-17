@@ -5,28 +5,52 @@ import urllib.parse
 from config import BASE_URL
 
 
-def get_all_places(city_id):
+def places_without_website():
     url_fetch_all_places=f"{BASE_URL}/api/v1/Place/List"
 
     data={
-    "filterInfo": [
+      "filterInfo": [
         {
-        "filterTerm": city_id,
-        "filterType": "EQUALS",
-        "filterBy": "cityId"
-        },
-        ]
+        "filterTerm": "",
+        "filterBy": "FacebookLink",
+        "filterType": "EQUALS"
+        }
+    ]
     }
 
     res_places=requests.post(url_fetch_all_places,json=data)
     return res_places.json()
-# aa=get_all_places("85ab5e34-3d98-406f-a8c1-77df8ed68c2c")
-# print(len(aa["data"]))
+
+def Increas_rating():
+    url_fetch_all_places=f"{BASE_URL}/api/v1/Place/List"
+
+    data={
+      "filterInfo": [
+
+{"filterBy": "Rating_n",
+"filterTerm": "1",
+"filterType": "GREATER"}, 
+
+{"filterBy": "Rating_n",
+"filterTerm": "50",
+"filterType": "LESSER"}, 
+
+{"filterBy": "Rating",
+"filterTerm": "3.0",
+"filterType": "LESSER"}, 
+]
+    }
+
+    res_places=requests.post(url_fetch_all_places,json=data)
+    return res_places.json()
+# a=Increas_rating()
+# print(a)
+
 def extract_email_phone_no(text):
   emails=[]
   email = re.findall(r'[\w\.-]+@[\w\.-]+', text)
   for i in email:
-      if len(i)>10 and ".jpg" not in i:
+      if len(i)>10:
           emails.append(i)
   
   return emails

@@ -1,27 +1,23 @@
-from data import all_data
-import pandas as pd
-URL=[]
-facebooks=[]
-twitters=[]
-instagrams=[]
-emails=[]
 
-
-
-
-for d in all_data:
-        URL.append(d['Business'])
-        instagrams.append(d['instagram'])
-        facebooks.append(d['facebook'])
-        twitters.append(d['twitter'])
-        emails.append(str(d['email']).replace("'","").replace("[","").replace("]",""))
-    
-df=pd.DataFrame({
-"Business":URL,
-"instagram":instagrams,
-"facebook":facebooks,
-"twitter":twitters,
-"emails":emails,
-})
-df.to_csv("output_info.csv")
-  
+out={
+            "names":i['PlaceName'],
+            "categories":i['PlaceType'],
+            "prize_ranges":i['PriceRange'],
+            "ratings":i['Rating'],
+            "review_n":i['Rating_n'],
+            "addresses":i['Address'],
+            "Neighborhoods":i['Neighborhood'],
+            "states":""),
+            "cities":(i['Address']),.split(",")[-2],
+            "countries":i['Country'],
+            "latitudes":i['Latitude'],
+            "longitudes":i['Longitude'],
+            "zipcodes":i['Zipcode'],
+            "phones":i['PhoneNumber'],
+            "URL":d['Business'],
+            "instagrams":d['instagram'],
+            "facebooks":d['facebook'],
+            "twitters":d['twitter'],
+            "tiktoks":d['tiktok'],
+            "emails":str(d['email'],.replace("'","").replace("[","").replace("]",""))
+            print(d)
