@@ -26,7 +26,7 @@ def extract_email_phone_no(text):
   emails=[]
   email = re.findall(r'[\w\.-]+@[\w\.-]+', text)
   for i in email:
-      if len(i)>10:
+      if len(i)>10 and ".jpg" not in i:
           emails.append(i)
   
   return emails

@@ -22,9 +22,7 @@ def get_and_combine_all_data(url):
     for em in emails:
         if em.lower() not in email:
             email.append(em.lower())
-    for ph in phones:
-        if ph not in phone:
-            phone.append(ph)
+    
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
@@ -71,7 +69,7 @@ def get_and_combine_all_data(url):
         "email":email,
     }
     f=open("data.json","a",encoding="utf-8")
-    f.write(str(df))
+    f.write(str(df)+",")
     return df  
 if __name__ == "__main__":
     start_time=time.time()
@@ -105,8 +103,7 @@ if __name__ == "__main__":
             print("")
             print("")
             item_no+=1
-            if item_no>500:
-                break
+            
             # if elapsed_time > 7200:  # If elapsed time is more than 2 hours (7200 seconds)
             #     break
         except:
