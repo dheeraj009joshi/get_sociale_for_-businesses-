@@ -22,11 +22,7 @@ def get_and_combine_all_data(url):
     for em in emails:
         if em.lower() not in email:
             email.append(em.lower())
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> bb3db12286e1ac97e3f61c4e829fd8f3a655d3e0
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
@@ -145,33 +141,6 @@ if __name__ == "__main__":
             "tiktok":d['tiktok'],
             "emails":str(d['email']).replace("'","").replace("[","").replace("]","")}
             print(out)
-<<<<<<< HEAD
-            # elapsed_time = time.time() - start_time  # Calculate elapsed time
-            print("")
-            print("")
-            print("")
-            print("")
-            item_no+=1
-            
-            # if elapsed_time > 7200:  # If elapsed time is more than 2 hours (7200 seconds)
-            #     break
-        except:
-            pass    
-    # print(all_dict)
-    for d in all_dict:
-        URL.append(d['Business'])
-        instagrams.append(d['instagram'])
-        facebooks.append(d['facebook'])
-        twitters.append(d['twitter'])
-        emails.append(str(d['email']).replace("'","").replace("[","").replace("]",""))
-    
-    df=pd.DataFrame({
-    "Business":URL,
-    "instagram":instagrams,
-    "facebook":facebooks,
-    "twitter":twitters,
-    "emails":emails,
-=======
             all_dict.append(out)
                             
         except Exception as err:
@@ -180,8 +149,12 @@ if __name__ == "__main__":
                 pass
             elif requests.exceptions.ConnectionError:
                 print("http err ")
-                time.sleep(120)
-                pass
+                print("Connection refused by the server..")
+                print("Let me sleep for 5 minuter ")
+                print("ZZzzzz...")
+                time.sleep(300)
+                print("Was a nice sleep, now let me continue...")
+                continue
             else:
                 print(str(err))
                 pass
@@ -255,7 +228,6 @@ if __name__ == "__main__":
     "Facebook": facebooks,
     "Twitter": twitters,
     "Tiktok": tiktoks
->>>>>>> bb3db12286e1ac97e3f61c4e829fd8f3a655d3e0
 })
     df.to_csv("Increase_Rating_contact_info.csv",index=False)
   
