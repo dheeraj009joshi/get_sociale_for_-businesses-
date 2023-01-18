@@ -22,11 +22,7 @@ def get_and_combine_all_data(url):
     for em in emails:
         if em.lower() not in email:
             email.append(em.lower())
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 047e584bac4b5bf3dfd133d74b327ff8b825baa1
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
@@ -145,8 +141,7 @@ if __name__ == "__main__":
             "tiktok":d['tiktok'],
             "emails":str(d['email']).replace("'","").replace("[","").replace("]","")}
             print(out)
-<<<<<<< HEAD
-            elapsed_time = time.time() - start_time  # Calculate elapsed time
+            # elapsed_time = time.time() - start_time  # Calculate elapsed time
             print("")
             print("")
             print("")
@@ -171,82 +166,6 @@ if __name__ == "__main__":
     "facebook":facebooks,
     "twitter":twitters,
     "emails":emails,
-=======
-            all_dict.append(out)
-                            
-        except Exception as err:
-            print(err)
-            pass
-        item_no+=1
-        no+=1
-        # if no>10:
-        #     break
-    print(len(all_dict))
-    for i in all_dict:
-            names.append(i['PlaceName'])
-            categories.append(i['PlaceType'])
-            prize_ranges.append(i['PriceRange'])
-            ratings.append(i['Rating'])
-            review_n.append(i['Rating_n'])
-            addresses.append(i['Address'])
-            Neighborhoods.append(i['Neighborhood'])
-            states.append("")
-            cities.append(i["cities"])
-            countries.append(i['Country'])
-            latitudes.append(i['Latitude'])
-            longitudes.append(i['Longitude'])
-            zipcodes.append(i['Zipcode'])
-            phones.append(i['PhoneNumber'])
-            URL.append(i['Business'])
-            instagrams.append(i['instagram'])
-            facebooks.append(i['facebook'])
-            twitters.append(i['twitter'])
-            tiktoks.append(i['tiktok'])
-            emails.append(i["emails"])
-          
-
-            
-            
-    print(len(names))     
-    print(len(categories))     
-    print(len(prize_ranges))     
-    print(len(review_n))     
-    print(len(addresses))     
-    print(len(Neighborhoods))     
-    print(len(cities))     
-    print(len(states))     
-    print(len(countries))     
-    print(len(zipcodes))     
-    print(len(latitudes))     
-    print(len(longitudes))     
-    print(len(URL))     
-    print(len(instagrams))     
-    print(len(facebooks))     
-    print(len(twitters))     
-    print(len(tiktoks))          
-    df=pd.DataFrame(
-    {
-    "Business Name": names,
-    "Category": categories,
-    "Price": prize_ranges,
-    "Rating": ratings,
-    "Review Count": review_n,
-    "Address": addresses,
-    "Neighborhood": Neighborhoods,
-    "City": cities,
-    "State": states,
-    "Country": countries,
-    "Zipcode": zipcodes,
-    "Latitude":latitudes,
-    "Longitude": longitudes,
-    "Phone Number": phones,
-    "Email": emails,
-    "Website":URL,
-    "Instagram":instagrams,
-    "Facebook": facebooks,
-    "Twitter": twitters,
-    "Tiktok": tiktoks
->>>>>>> 047e584bac4b5bf3dfd133d74b327ff8b825baa1
 })
     df.to_csv("Increase_Rating_contact_info.csv",index=False)
   
