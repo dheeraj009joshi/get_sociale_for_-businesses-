@@ -144,21 +144,12 @@ if __name__ == "__main__":
             all_dict.append(out)
                             
         except Exception as err:
-            if str(err)=="No connection adapters were found for '://'":
-                print(" No website url available ")
-                pass
-            elif requests.exceptions.ConnectionError:
-                print("http err ")
-                time.sleep(120)
-                pass
-            else:
-                print(str(err))
-                pass
-            
+            print(err)
+            pass
         item_no+=1
         no+=1
-        # if no>10:
-        #     break
+        if no>500:
+            break
     print(len(all_dict))
     for i in all_dict:
             names.append(i['PlaceName'])
@@ -225,7 +216,7 @@ if __name__ == "__main__":
     "Twitter": twitters,
     "Tiktok": tiktoks
 })
-    df.to_csv("Increase_Rating_contact_info.csv",index=False)
+    df.to_csv("Increase_Rating_contact_info+500.csv",index=False)
   
 
 

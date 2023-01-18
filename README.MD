@@ -27,3 +27,5 @@
 * Facebook 
 * Twitter 
 * Tiktok
+
+#This script will also handel  " requests.exceptions.ConnectionError "  ecception and wait for 10 minutes to get  connection back. 
