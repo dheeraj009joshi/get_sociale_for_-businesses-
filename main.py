@@ -22,7 +22,11 @@ def get_and_combine_all_data(url):
     for em in emails:
         if em.lower() not in email:
             email.append(em.lower())
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 047e584bac4b5bf3dfd133d74b327ff8b825baa1
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
@@ -84,7 +88,7 @@ def get_and_combine_all_data(url):
         "email":email,
     }
     f=open("data.json","a",encoding="utf-8")
-    f.write(str(df))
+    f.write(str(df)+",")
     return df  
 if __name__ == "__main__":
     names=[]
@@ -141,6 +145,33 @@ if __name__ == "__main__":
             "tiktok":d['tiktok'],
             "emails":str(d['email']).replace("'","").replace("[","").replace("]","")}
             print(out)
+<<<<<<< HEAD
+            elapsed_time = time.time() - start_time  # Calculate elapsed time
+            print("")
+            print("")
+            print("")
+            print("")
+            item_no+=1
+            
+            # if elapsed_time > 7200:  # If elapsed time is more than 2 hours (7200 seconds)
+            #     break
+        except:
+            pass    
+    # print(all_dict)
+    for d in all_dict:
+        URL.append(d['Business'])
+        instagrams.append(d['instagram'])
+        facebooks.append(d['facebook'])
+        twitters.append(d['twitter'])
+        emails.append(str(d['email']).replace("'","").replace("[","").replace("]",""))
+    
+    df=pd.DataFrame({
+    "Business":URL,
+    "instagram":instagrams,
+    "facebook":facebooks,
+    "twitter":twitters,
+    "emails":emails,
+=======
             all_dict.append(out)
                             
         except Exception as err:
@@ -224,6 +255,7 @@ if __name__ == "__main__":
     "Facebook": facebooks,
     "Twitter": twitters,
     "Tiktok": tiktoks
+>>>>>>> 047e584bac4b5bf3dfd133d74b327ff8b825baa1
 })
     df.to_csv("Increase_Rating_contact_info.csv",index=False)
   
