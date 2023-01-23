@@ -106,6 +106,7 @@ if __name__ == "__main__":
     twitters=[]
     instagrams=[]
     emails=[]
+    Email_final=[]
     tiktoks=[]
     aa=Increas_rating()
     item_no=1
@@ -119,6 +120,17 @@ if __name__ == "__main__":
             base_url = dD.scheme + "://" +dD.netloc
             print(base_url)
             d=get_and_combine_all_data(base_url)
+            web_name=base_url.split("/")[2].split(".")[-2]
+            print("website name = ",web_name)
+            f_mail_bets=[]
+            try:
+                for e in d['email']: 
+                    if web_name in e:
+                        print("name of website found in email :- ", e)
+                        f_mail_bets.append(e)
+            except Exception as err:
+                print(err)
+                pass
             out={
             "PlaceName":i['PlaceName'],
             "PlaceType":i['PlaceType'],
@@ -139,32 +151,46 @@ if __name__ == "__main__":
             "facebook":d['facebook'],
             "twitter":d['twitter'],
             "tiktok":d['tiktok'],
-            "emails":str(d['email']).replace("'","").replace("[","").replace("]","")}
+            "emails":d['email'],
+            "F_mail":f_mail_bets}
+            
             print(out)
             all_dict.append(out)
                             
         except Exception as err:
+            print ( "err caucing the problem ",err)
             if str(err)=="No connection adapters were found for '://'":
                 print(" No website url available ")
                 pass
             elif requests.exceptions.ConnectionError:
                 print("http err ")
                 print("Connection refused by the server..")
-                print("Let me sleep for 5 minuter ")
-                print("ZZzzzz...")
-                time.sleep(300)
-                print("Was a nice sleep, now let me continue...")
+                # print("Let me sleep for 5 minuter ")
+                # print("ZZzzzz...")
+                # time.sleep(300)
+                # print("Was a nice sleep, now let me continue...")
                 continue
+                # pass
             else:
                 print(str(err))
                 pass
+            # print(err)
             
         item_no+=1
         no+=1
         # if no>10:
         #     break
+        
+    
+
     print(len(all_dict))
     for i in all_dict:
+            try:
+                print("in try ")
+
+                F_EMAIL=i["F_mail"][0] 
+            except :
+                F_EMAIL=""
             names.append(i['PlaceName'])
             categories.append(i['PlaceType'])
             prize_ranges.append(i['PriceRange'])
@@ -184,7 +210,8 @@ if __name__ == "__main__":
             facebooks.append(i['facebook'])
             twitters.append(i['twitter'])
             tiktoks.append(i['tiktok'])
-            emails.append(i["emails"])
+            emails.append(str(i["emails"]).replace("'","").replace("[","").replace("]",""))
+            Email_final.append(F_EMAIL)
           
 
             
@@ -229,7 +256,34 @@ if __name__ == "__main__":
     "Twitter": twitters,
     "Tiktok": tiktoks
 })
+   
+    
+    
+    df_final=pd.DataFrame(
+    {
+    "Business Name": names,
+    "Category": categories,
+    "Price": prize_ranges,
+    "Rating": ratings,
+    "Review Count": review_n,
+    "Address": addresses,
+    "Neighborhood": Neighborhoods,
+    "City": cities,
+    "State": states,
+    "Country": countries,
+    "Zipcode": zipcodes,
+    "Latitude":latitudes,
+    "Longitude": longitudes,
+    "Phone Number": phones,
+    "Email": Email_final,
+    "Website":URL,
+    "Instagram":instagrams,
+    "Facebook": facebooks,
+    "Twitter": twitters,
+    "Tiktok": tiktoks
+})
     df.to_csv("Increase_Rating_contact_info.csv",index=False)
+    df_final.to_csv("Increase_Rating_final_output.csv",index=False)
   
 
 

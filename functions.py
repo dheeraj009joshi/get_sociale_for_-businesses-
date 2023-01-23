@@ -48,7 +48,7 @@ def Increas_rating():
 
 def extract_email_phone_no(text):
   emails=[]
-  email = re.findall(r'[\w\.-]+@[\w\.-]+', text)
+  email = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', text)
   for i in email:
       if len(i)>10:
           emails.append(i)
