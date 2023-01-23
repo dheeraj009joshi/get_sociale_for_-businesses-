@@ -165,10 +165,10 @@ if __name__ == "__main__":
             elif requests.exceptions.ConnectionError:
                 print("http err ")
                 print("Connection refused by the server..")
-                # print("Let me sleep for 5 minuter ")
-                # print("ZZzzzz...")
-                # time.sleep(300)
-                # print("Was a nice sleep, now let me continue...")
+                print("Let me sleep for 5 minuter ")
+                print("ZZzzzz...")
+                time.sleep(300)
+                print("Was a nice sleep, now let me continue...")
                 continue
                 # pass
             else:
