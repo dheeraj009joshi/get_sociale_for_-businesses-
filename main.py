@@ -1,4 +1,5 @@
 
+import csv
 from config import BASE_URL
 import requests
 from bs4 import BeautifulSoup
@@ -83,8 +84,6 @@ def get_and_combine_all_data(url):
         "tiktok":tiktok[0],
         "email":email,
     }
-    f=open("data.json","a",encoding="utf-8")
-    f.write(str(df))
     return df  
 if __name__ == "__main__":
     names=[]
@@ -156,6 +155,12 @@ if __name__ == "__main__":
             
             print(out)
             all_dict.append(out)
+            
+            List=[out["PlaceName"],out["PlaceType"],out["PriceRange"],out["Rating"],out["Address"],out["Neighborhood"],out["cities"],out["states"],out["Country"],out["Zipcode"],out["Latitude"],out["Longitude"],out["PhoneNumber"],out["emails"],out["Business"],out["instagram"],out["facebook"],out["twitter"],out["tiktok"]]
+            with open('demo.csv', 'a', newline='') as f_object:
+                writer_object = csv.writer(f_object)
+                writer_object.writerow(List)
+                f_object.close()
                             
         except Exception as err:
             print ( "err caucing the problem ",err)
@@ -165,10 +170,10 @@ if __name__ == "__main__":
             elif requests.exceptions.ConnectionError:
                 print("http err ")
                 print("Connection refused by the server..")
-                # print("Let me sleep for 5 minuter ")
-                # print("ZZzzzz...")
-                # time.sleep(300)
-                # print("Was a nice sleep, now let me continue...")
+                print("Let me sleep for 5 minuter ")
+                print("ZZzzzz...")
+                time.sleep(300)
+                print("Was a nice sleep, now let me continue...")
                 continue
                 # pass
             else:
@@ -178,7 +183,7 @@ if __name__ == "__main__":
             
         item_no+=1
         no+=1
-        # if no>10:
+        # if no>3:
         #     break
         
     
@@ -190,7 +195,7 @@ if __name__ == "__main__":
 
                 F_EMAIL=i["F_mail"][0] 
             except :
-                F_EMAIL=""
+                F_EMAIL=i['emails'][0]
             names.append(i['PlaceName'])
             categories.append(i['PlaceType'])
             prize_ranges.append(i['PriceRange'])
@@ -282,8 +287,8 @@ if __name__ == "__main__":
     "Twitter": twitters,
     "Tiktok": tiktoks
 })
-    df.to_csv("Increase_Rating_contact_info.csv",index=False)
-    df_final.to_csv("Increase_Rating_final_output.csv",index=False)
+    df.to_csv("output_csv's/Increase_Rating_contact_info.csv",index=False)
+    df_final.to_csv("output_csv's/Increase_Rating_final_output.csv",index=False)
   
 
 

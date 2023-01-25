@@ -6,7 +6,7 @@
 # After running the following commands you can run the main file ,  you can use the following command
 * python main.py
 
-# This will output a csv filr named "Increase_Rating_contact_info.csv"  which contain the following headers :-
+# This will output 2 csv file in the outpute_csv folder and one csv file which append all the data into it as it scrape   which contain the following headers :-
 * Business Name 
 * Category 
 * Price 
