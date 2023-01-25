@@ -157,7 +157,7 @@ if __name__ == "__main__":
             all_dict.append(out)
             
             List=[out["PlaceName"],out["PlaceType"],out["PriceRange"],out["Rating"],out["Address"],out["Neighborhood"],out["cities"],out["states"],out["Country"],out["Zipcode"],out["Latitude"],out["Longitude"],out["PhoneNumber"],out["emails"],out["Business"],out["instagram"],out["facebook"],out["twitter"],out["tiktok"]]
-            with open('demo.csv', 'a', newline='') as f_object:
+            with open('leads.csv', 'a', newline='') as f_object:
                 writer_object = csv.writer(f_object)
                 writer_object.writerow(List)
                 f_object.close()
